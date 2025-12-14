@@ -37,3 +37,16 @@ The time span of the data allows comparison across three key phases:
 - Pre-COVID period (2019)
 - COVID and border restriction period (2020–2022)
 - Post-COVID recovery period (2023–2025)
+
+## 5. Data Understanding & Preparation (Overview)
+
+The dataset records daily international border movements from January 2019 to December 2025. Each record represents aggregated traveller movements by date and characteristics such as travel direction, citizenship, travel mode, port of movement, and selected demographic attributes.
+
+Given the daily granularity and the presence of significant volatility during the COVID period, the analysis design defines two levels of temporal analysis:
+- Daily data is used to examine short-term fluctuations and abnormal movements, particularly during periods of border restrictions.
+- Monthly aggregated data will be created in later stages of the project to identify long-term trends, seasonal patterns, and recovery dynamics across different years.
+
+To support meaningful comparison, derived fields will be created, including net border movement (arrivals minus departures) and a period classification (Pre-COVID, COVID, and Post-COVID). This enables border activity to be analysed consistently across different policy and travel phases.
+
+Variables with high cardinality, such as individual ports and overseas connections, are reviewed and selectively aggregated or filtered to maintain clarity and interpretability in visualisations. Variables are selected based on analytical relevance, granularity, and their ability to support the project’s key research questions.
+
