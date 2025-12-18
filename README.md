@@ -21,7 +21,6 @@ This project seeks to answer the following questions:
 2. Is New Zealand experiencing net population inflow or outflow, and how does this vary across different time periods?
 3. Are there clear seasonal patterns in border movements, and do these patterns differ by travel mode (air, cruise ship, other sea)?
 4. How do border movements differ by traveller characteristics such as citizenship, age group, and sex?
-5. Are there notable differences in border activity across ports and closest overseas countries, and have these patterns changed over time?
 
 ---
 
