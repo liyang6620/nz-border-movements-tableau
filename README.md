@@ -65,11 +65,72 @@ By 2023–2024, monthly border movements return to levels comparable to, and in 
 The yearly net arrivals chart highlights meaningful differences across the three periods.
 
 - In 2019, New Zealand experienced a positive net inflow.
-
 - During 2020 and 2021, net arrivals turned negative, indicating that departures exceeded arrivals during the height of border restrictions.
-
 - A strong positive net inflow appears in 2022 and peaks in 2023, suggesting a period of population rebound and increased inbound movement following border reopening.
-
 - In 2024 and 2025, net arrivals decline again, approaching zero or turning slightly negative, indicating a more balanced or stabilising flow between arrivals and departures.
 
 This pattern suggests that post-COVID recovery involved an initial surge of inbound movement, followed by a gradual normalisation rather than continuous growth.
+
+### 6.3 Travel Mode Structure: Air vs Non-Air
+
+The share of arrivals by travel mode shows that air travel overwhelmingly dominates international arrivals across all years in the dataset.
+
+Even during the COVID period, when total volumes were extremely low, the proportion of non-air travel remains minimal. Post-COVID recovery does not significantly alter this structure: air travel continues to account for nearly all international arrivals.
+
+This indicates that recovery in border movements is primarily driven by air connectivity, while cruise and other sea-based travel remain structurally small contributors to total arrivals throughout the period.
+
+### 6.4 Demographic Patterns by Age Group
+
+The small-multiples view of monthly arrivals by age group reveals notable differences in recovery patterns:
+
+- The 18–39 and 40–69 age groups consistently represent the largest volumes of arrivals both before and after COVID.
+- All age groups experience near-total collapse during 2020–2021, reinforcing the systemic impact of border restrictions.
+- Post-2022 recovery is strongest and most sustained among the working-age population (18–39 and 40–69).
+- The 70+ age group shows a slower and lower-volume recovery, remaining significantly below pre-COVID levels even in later years.
+- The 01–17 group recovers alongside overall trends but at lower absolute volumes, reflecting dependence on family travel patterns.
+
+These patterns suggest that post-COVID international mobility has been led primarily by working-age travellers rather than older cohorts.
+
+### 6.5 Arrivals by Citizenship
+
+The yearly arrivals by citizenship chart shows that non-New Zealand citizens consistently account for a larger share of arrivals than New Zealand citizens across all years.
+
+- Both NZ and non-NZ arrivals decline sharply during the COVID period.
+- From 2022 onwards, non-NZ arrivals rebound more strongly than NZ citizen arrivals.
+- By 2024–2025, non-NZ arrivals exceed pre-COVID levels, while NZ citizen arrivals recover more gradually.
+
+This indicates that international border recovery has been driven largely by overseas travellers rather than returning New Zealand residents.
+
+### 6.6 Gender Composition of Arrivals
+
+The share of arrivals by sex shows a relatively stable gender distribution over time.
+
+- Both male and female arrivals decline sharply during COVID.
+- Post-COVID recovery does not materially alter the gender balance of arrivals.
+- No significant divergence is observed between male and female recovery patterns at the yearly level.
+
+This suggests that COVID-related disruptions affected international travel broadly rather than disproportionately impacting one gender group.
+
+### 6.7 Geographic Patterns of Overseas Arrivals
+
+The geographic distribution maps show that New Zealand’s main overseas source countries remain largely consistent across the pre-COVID, COVID, and post-COVID periods.
+
+Across all periods, arrivals are highly concentrated in a small number of countries, particularly Australia, followed by the United States, Canada, China, South Korea, Hong Kong, and Singapore. While overall arrival volumes drop sharply during the COVID period and recover afterward, the relative importance of these source countries does not change substantially.
+
+During the COVID period, arrival volumes decline across all countries rather than shifting toward new regions, indicating a broad suppression of international travel rather than a reconfiguration of travel origins. In the post-COVID period, volumes increase again, especially from Australia and North America, but the geographic pattern closely resembles the pre-COVID distribution.
+
+Overall, the maps suggest that COVID-19 primarily affected the scale of international travel to New Zealand rather than the structure of overseas connections. New Zealand’s international travel network appears resilient, with recovery occurring along existing routes instead of through the emergence of new major source countries.
+
+## 7. Key Insights & Implications
+
+- COVID-19 caused a temporary but severe disruption to New Zealand’s border movements, with recovery driven by a rapid return of air-based international travel rather than structural changes in travel origins.
+- Post-COVID border recovery was led by non-New Zealand citizens and working-age travellers, highlighting the importance of international tourism, education, and labour-related mobility in overall border activity.
+- Net migration patterns indicate that the post-COVID rebound represented a short-term surge rather than a sustained increase in population inflow.
+- The geographic distribution of overseas arrivals remains highly concentrated, suggesting that New Zealand’s international connectivity has recovered along existing routes rather than diversifying into new markets.
+
+## 8. Limitations & Next Steps
+
+- This analysis focuses on observed border movement patterns and does not attempt to model causal relationships or forecast future travel volumes.
+- The dataset is aggregated at the daily level and does not capture individual traveller behaviour or repeat travel.
+- Future analysis could incorporate economic indicators, visa categories, or labour market data to better understand the drivers behind post-COVID migration and travel recovery.
+
