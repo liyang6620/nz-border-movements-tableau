@@ -49,3 +49,27 @@ To support meaningful comparison, derived fields will be created, including net 
 
 Variables with high cardinality, such as individual ports and overseas connections, are reviewed and selectively aggregated or filtered to maintain clarity and interpretability in visualisations. Variables are selected based on analytical relevance, granularity, and their ability to support the project’s key research questions.
 
+## 6. Key Findings
+
+Based on exploratory analysis of New Zealand’s international border movement data from 2019 to 2025, several key patterns and structural changes were identified across time periods, traveller groups, travel modes, and overseas connections.
+
+### 6.1 Overall Border Movement Trends
+The monthly arrivals and departures chart shows a clear and immediate structural break beginning in early 2020. Prior to COVID-19, arrivals and departures followed relatively stable seasonal fluctuations, with monthly volumes consistently exceeding 400,000 travellers.
+
+From 2020 through most of 2021, both arrivals and departures dropped to near-zero levels. This confirms the significant impact of border closures and strict travel restrictions during the COVID period. The recovery phase begins in early 2022, where a rapid and sustained increase in both arrivals and departures is visible.
+
+By 2023–2024, monthly border movements return to levels comparable to, and in some months exceeding, pre-COVID volumes, indicating a strong rebound in international travel activity.
+
+### 6.2 Net Arrivals and Population Flow Dynamics
+
+The yearly net arrivals chart highlights meaningful differences across the three periods.
+
+- In 2019, New Zealand experienced a positive net inflow.
+
+- During 2020 and 2021, net arrivals turned negative, indicating that departures exceeded arrivals during the height of border restrictions.
+
+- A strong positive net inflow appears in 2022 and peaks in 2023, suggesting a period of population rebound and increased inbound movement following border reopening.
+
+- In 2024 and 2025, net arrivals decline again, approaching zero or turning slightly negative, indicating a more balanced or stabilising flow between arrivals and departures.
+
+This pattern suggests that post-COVID recovery involved an initial surge of inbound movement, followed by a gradual normalisation rather than continuous growth.
