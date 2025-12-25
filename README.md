@@ -1,109 +1,117 @@
-#New Zealand Border Movements Analytics Dashboard (2019–2025)
-**Business-Focused Travel & Migration Insights for Tourism and Policy Stakeholders**  
-📊 Tableau Dashboard | 📁 Stats NZ Data | 🧭 Actionable Business Insights
+# New Zealand Border Movements – Tableau Analytics Dashboard (2019–2025)
 
----
+**Business-focused analytics for tourism, labour mobility, and population recovery planning**
 
-## 1️⃣ Executive Summary
-This project presents a **business-oriented analytics dashboard** built to support organisations involved in **tourism, immigration, labour mobility, and international education** in New Zealand.
-
-Using 7 years of border movement data (2019–2025), the dashboard uncovers how COVID-19 reshaped international mobility and identifies **which traveller groups and markets are driving recovery**, helping stakeholders prioritise investments and policy focus.
-
-👉 **Live Interactive Dashboard:**  
+🔗 **Live Interactive Dashboard:**  
 https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025?publish=yes
 
 ---
 
-## 2️⃣ Business Problem
-New Zealand relies heavily on international travel for:
+## Executive Summary
 
-- Tourism revenue
-- Workforce supply (hospitality, agriculture, healthcare)
-- International students
-- Net population growth
+This Tableau analytics project examines New Zealand’s international border movements across three structural phases — **pre-COVID, COVID restrictions, and post-COVID recovery (2019–2025)** — and translates the findings into **actionable business insights** for tourism, immigration, and labour-market stakeholders.
 
-Border closures caused a collapse in international arrivals, generating **economic losses and labour shortages**. Today, stakeholders need data to answer:
-
-| Key Business Questions |
-|------------------------|
-| Which traveller segments are recovering fastest? |
-| Should tourism marketing budgets prioritise Australia, US, China or other markets? |
-| Is the rebound temporary or long-term? |
-| Has NZ’s labour-related mobility (18–39 age arrivals) returned to pre-COVID levels? |
+**Top findings at a glance:**
+- Recovery is **led by non-NZ citizens** and **working-age arrivals (18–39)**.
+- Air travel accounts for **nearly all inbound volume**; cruise-based recovery is negligible.
+- 2023 surge represents a **temporary rebound**, while **2024–25 trends flatten**, signaling stabilization rather than continuous growth.
 
 ---
 
-## 3️⃣ Solution Overview
-This project delivers:
+## Business Problem
 
-✔️ A multi-layer Tableau dashboard  
-✔️ Segmentation across age, citizenship, mode, region, and time  
-✔️ Commercial-grade insights that support investment & policy decisions  
+New Zealand’s economy depends heavily on:
+| Area | Why it matters |
+|------|----------------|
+| Tourism | Major GDP and regional employment contributor |
+| Labour supply | Hospitality, agriculture, and healthcare rely on migrant inflows |
+| International students | Strong influence on rental market, spending, and population |
+| Net migration | Shapes labour force and long-term population growth |
+
+After border closures, stakeholders need to know:
+
+- Which traveller groups are returning fastest?
+- Is post-COVID growth sustainable or a one-off spike?
+- Which countries deserve tourism marketing budget?
+- Has inbound labour supply returned enough to relieve shortages?
+
+---
+
+## Solution Overview
+
+This project delivers an **interactive Tableau dashboard** that allows users to:
+✔ Compare yearly trends pre-/during-/post-COVID  
+✔ Filter by age, citizenship, sex, travel mode, and country  
+✔ View net migration movement as a simple population-change proxy  
+✔ Interpret insights without needing technical or database skills  
 
 **Dashboard Design Goals**
-- Make complex trends digestible for non-technical business users
-- Enable quick comparison between pre-COVID, COVID and post-COVID phases
-- Provide actionable context to guide planning and investment
+- Business-first: enable decisions, not just charts
+- Reduce cognitive load: visual clarity > complexity
+- Support self-exploration by non-technical users
 
 ---
 
-## 4️⃣ Data Source & Preparation
+## Data & Preparation
+
 | Item | Details |
 |------|---------|
-| Source | Stats NZ – International Travel (Provisional) |
-| Time Span | Jan 2019 – Dec 2025 |
-| Files Used | Three CSV snapshots downloaded directly from Stats NZ |
-| Preparation Method | Tableau Wildcard Union + data model + calculated fields |
+| Data Source | Stats NZ – International travel (provisional) |
+| Range | Jan 2019 – Dec 2025 |
+| Raw Files | 3 × CSV snapshots downloaded directly from Stats NZ |
+| Preparation Method | Tableau Wildcard Union + data cleaning inside Tableau |
 
-No programming language was required — **data preparation took place inside Tableau**, including:
-- Wildcard CSV union to merge multi-file datasets
-- Field selection and data cleaning
-- Derived fields such as:
-  - Net border movement (Arrivals – Departures)
-  - Period category (Pre-COVID, COVID, Post-COVID)
+**Derived fields created**
+- `Net Movement = Arrivals – Departures`
+- `Period Phase = Pre-COVID / COVID / Post-COVID`
+- Monthly aggregation fields for trend comparison
 
-This models real-world analyst workflows where data often arrives as flat files and analysts must **clean, structure, and derive meaning directly inside BI tools**.
+No Python or ETL tooling was required — data modelling occurred **inside Tableau**, reflecting how BI analysts often work with spreadsheet-based datasets in the real world.
 
 ---
 
-## 5️⃣ Key Insights & Commercial Implications
+## Key Insights & Commercial Implications
 
-| Finding | Business / Policy Action |
-|---------|--------------------------|
-| Recovery is almost entirely driven by **air travel**, cruise remains structurally small | Tourism NZ should prioritise airline partnerships → cruise-based campaigns deliver low ROI |
-| **Non-NZ citizens** drive most of the post-COVID recovery | Marketing and visa improvements should target inbound tourism, workers, and students |
-| Recovery peaked in 2023, **2024–25 stabilises** | Do not overestimate long-term rebound — labour/education planning must assume stable baseline |
-| Working-age groups (18–39, 40–69) dominate mobility | Labour shortages can be relieved through attracting these cohorts, especially 18–39 |
-| Arrivals geographically remain **highly concentrated (AU, US, CN)** | Marketing budgets should reinforce existing proven markets rather than expand prematurely |
+| Insight | What It Means for Business |
+|--------|-----------------------------|
+| Recovery almost entirely driven by **air travel** | Partner with airlines; cruise promotions deliver low ROI |
+| **Non-NZ citizens** drive inbound recovery | Target tourism, study, and work visa marketing at overseas audiences |
+| Post-COVID rebound **peaks in 2023, then stabilises** | Avoid over-forecasting; plan workforce & enrolment on stable baselines |
+| Strongest recovery among **18–39 working-age group** | Young-talent and labour-visa programs can relieve shortages |
+| Arrivals remain concentrated (AU, US, CN) | Marketing should reinforce proven markets before expanding |
 
 ---
 
-## 6️⃣ Dashboard Features
+## Dashboard Features
+
 | Feature | Value |
 |--------|-------|
-| Year comparison (pre-COVID vs recovery) | Enables long-term trend evaluation |
-| Age segmentation | Supports labour supply / workforce planning |
-| Citizenship view | Tourism vs returning NZ resident patterns |
-| Net movement metric | Quick proxy for migration / population change |
-| Geographic heat map | Helps decide which regions warrant promotional spending |
+| Year selector | Compare pre-/COVID/post-COVID periods |
+| Citizenship segmentation | Distinguish tourism vs NZ residents |
+| Age filters | Workforce-relevant mobility insights |
+| Net migration metric | Quick proxy for population change |
+| Interactive map | Identify high-value origin markets |
 
 ---
 
-## 7️⃣ Limitations & Next Steps
+## Limitations & Next Steps
+
 **Limitations**
-- Dataset is aggregated; no purpose-of-trip attributes
-- Does not incorporate economic or visa policy drivers
+- Dataset is aggregated; no purpose-of-travel metadata
+- Cannot distinguish student vs worker vs tourist
 
-**Future Enhancements**
-- Integrate labour market / visa / GDP indicators
-- Add forecasting (e.g., Tableau trend lines or ML model)
-- Deploy dashboard inside a business-facing web UI
-
----
-
-## 8️⃣ About the Analyst
-👋 **Yang Li – Data Analyst (Auckland)**  
-Experienced in Tableau, SQL, Python (ETL), AWS fundamentals, business analytics, and dashboard storytelling.
+**Possible Enhancements**
+- Incorporate visa, GDP, and unemployment datasets
+- Use Tableau forecasting or ML to predict future trends
+- Deploy dashboard into a business-facing web app (AWS + Tableau Embed)
 
 ---
+
+## About the Analyst
+
+**Yang Li – Data Analyst (Auckland, NZ)**  
+Skills: Tableau, SQL, Python (ETL), AWS fundamentals, dashboard storytelling  
+Portfolio: *(link placeholder – to add when portfolio repo is ready)*
+
+
 
