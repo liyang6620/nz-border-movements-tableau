@@ -134,3 +134,9 @@ Overall, the maps suggest that COVID-19 primarily affected the scale of internat
 - The dataset is aggregated at the daily level and does not capture individual traveller behaviour or repeat travel.
 - Future analysis could incorporate economic indicators, visa categories, or labour market data to better understand the drivers behind post-COVID migration and travel recovery.
 
+## Live Interactive Dashboard
+
+Explore the full interactive Tableau dashboard here:
+
+👉 https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025?publish=yes
+
