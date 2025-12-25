@@ -1,142 +1,109 @@
-# New Zealand Border Movements Analysis
-
-## 1. Business Context
-International travel plays a critical role in New Zealand’s tourism sector, population change, and labour supply. Border movements are influenced not only by overall travel demand, but also by traveller characteristics, travel modes, and entry or exit points.
-
-Following the COVID-19 pandemic, New Zealand experienced significant border restrictions and a gradual reopening process. Understanding how border movements have changed across different time periods, traveller groups, and travel modes is essential for assessing recovery patterns and structural shifts in international travel.
-
-This project analyses detailed daily border movement data to examine how arrivals and departures vary by time, citizenship, travel mode, port, and demographic characteristics, with a focus on comparing pre-COVID, COVID, and post-COVID periods.
+# 🇳🇿 New Zealand Border Movements Analytics Dashboard (2019–2025)
+**Business-Focused Travel & Migration Insights for Tourism and Policy Stakeholders**  
+📊 Tableau Dashboard | 📁 Stats NZ Data | 🧭 Actionable Business Insights
 
 ---
 
-## 2. Project Objective
-The objective of this project is to analyse daily international border movement data from 2019 to 2025 in order to identify long-term trends, recovery patterns, and structural differences in New Zealand’s border activity across different time periods, traveller groups, and travel characteristics.
+## 1️⃣ Executive Summary
+This project presents a **business-oriented analytics dashboard** built to support organisations involved in **tourism, immigration, labour mobility, and international education** in New Zealand.
+
+Using 7 years of border movement data (2019–2025), the dashboard uncovers how COVID-19 reshaped international mobility and identifies **which traveller groups and markets are driving recovery**, helping stakeholders prioritise investments and policy focus.
+
+👉 **Live Interactive Dashboard:**  
+https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025?publish=yes
 
 ---
 
-## 3. Key Analysis Questions
-This project seeks to answer the following questions:
+## 2️⃣ Business Problem
+New Zealand relies heavily on international travel for:
 
-1. How have border arrivals and departures changed over time from 2019 to 2025, particularly across pre-COVID, COVID, and post-COVID periods?
-2. Is New Zealand experiencing net population inflow or outflow, and how does this vary across different time periods?
-3. Are there clear seasonal patterns in border movements, and do these patterns differ by travel mode (air, cruise ship, other sea)?
-4. How do border movements differ by traveller characteristics such as citizenship, age group, and sex?
+- Tourism revenue
+- Workforce supply (hospitality, agriculture, healthcare)
+- International students
+- Net population growth
+
+Border closures caused a collapse in international arrivals, generating **economic losses and labour shortages**. Today, stakeholders need data to answer:
+
+| Key Business Questions |
+|------------------------|
+| Which traveller segments are recovering fastest? |
+| Should tourism marketing budgets prioritise Australia, US, China or other markets? |
+| Is the rebound temporary or long-term? |
+| Has NZ’s labour-related mobility (18–39 age arrivals) returned to pre-COVID levels? |
 
 ---
 
-## 4. Data Source
-- **Source**: Stats NZ – International travel (provisional)
-- **Website**: https://www.stats.govt.nz/indicators/international-travel-provisional/
-- **Time period**: January 2019 – December 2025
-- **Data granularity**: Daily border movements
+## 3️⃣ Solution Overview
+This project delivers:
 
-The dataset includes detailed variables describing each border crossing, including date components (year, month, day), travel direction (arrival or departure), traveller citizenship, travel mode (air, cruise ship, other sea), port of movement, closest overseas port and country, and demographic attributes such as age group and sex.
+✔️ A multi-layer Tableau dashboard  
+✔️ Segmentation across age, citizenship, mode, region, and time  
+✔️ Commercial-grade insights that support investment & policy decisions  
 
-The time span of the data allows comparison across three key phases:
-- Pre-COVID period (2019)
-- COVID and border restriction period (2020–2022)
-- Post-COVID recovery period (2023–2025)
+**Dashboard Design Goals**
+- Make complex trends digestible for non-technical business users
+- Enable quick comparison between pre-COVID, COVID and post-COVID phases
+- Provide actionable context to guide planning and investment
 
-## 5. Data Understanding & Preparation (Overview)
+---
 
-The dataset records daily international border movements from January 2019 to December 2025. Each record represents aggregated traveller movements by date and characteristics such as travel direction, citizenship, travel mode, port of movement, and selected demographic attributes.
+## 4️⃣ Data Source & Preparation
+| Item | Details |
+|------|---------|
+| Source | Stats NZ – International Travel (Provisional) |
+| Time Span | Jan 2019 – Dec 2025 |
+| Files Used | Three CSV snapshots downloaded directly from Stats NZ |
+| Preparation Method | Tableau Wildcard Union + data model + calculated fields |
 
-Given the daily granularity and the presence of significant volatility during the COVID period, the analysis design defines two levels of temporal analysis:
-- Daily data is used to examine short-term fluctuations and abnormal movements, particularly during periods of border restrictions.
-- Monthly aggregated data will be created in later stages of the project to identify long-term trends, seasonal patterns, and recovery dynamics across different years.
+No programming language was required — **data preparation took place inside Tableau**, including:
+- Wildcard CSV union to merge multi-file datasets
+- Field selection and data cleaning
+- Derived fields such as:
+  - Net border movement (Arrivals – Departures)
+  - Period category (Pre-COVID, COVID, Post-COVID)
 
-To support meaningful comparison, derived fields will be created, including net border movement (arrivals minus departures) and a period classification (Pre-COVID, COVID, and Post-COVID). This enables border activity to be analysed consistently across different policy and travel phases.
+This models real-world analyst workflows where data often arrives as flat files and analysts must **clean, structure, and derive meaning directly inside BI tools**.
 
-Variables with high cardinality, such as individual ports and overseas connections, are reviewed and selectively aggregated or filtered to maintain clarity and interpretability in visualisations. Variables are selected based on analytical relevance, granularity, and their ability to support the project’s key research questions.
+---
 
-## 6. Key Findings
+## 5️⃣ Key Insights & Commercial Implications
 
-Based on exploratory analysis of New Zealand’s international border movement data from 2019 to 2025, several key patterns and structural changes were identified across time periods, traveller groups, travel modes, and overseas connections.
+| Finding | Business / Policy Action |
+|---------|--------------------------|
+| Recovery is almost entirely driven by **air travel**, cruise remains structurally small | Tourism NZ should prioritise airline partnerships → cruise-based campaigns deliver low ROI |
+| **Non-NZ citizens** drive most of the post-COVID recovery | Marketing and visa improvements should target inbound tourism, workers, and students |
+| Recovery peaked in 2023, **2024–25 stabilises** | Do not overestimate long-term rebound — labour/education planning must assume stable baseline |
+| Working-age groups (18–39, 40–69) dominate mobility | Labour shortages can be relieved through attracting these cohorts, especially 18–39 |
+| Arrivals geographically remain **highly concentrated (AU, US, CN)** | Marketing budgets should reinforce existing proven markets rather than expand prematurely |
 
-### 6.1 Overall Border Movement Trends
-The monthly arrivals and departures chart shows a clear and immediate structural break beginning in early 2020. Prior to COVID-19, arrivals and departures followed relatively stable seasonal fluctuations, with monthly volumes consistently exceeding 400,000 travellers.
+---
 
-From 2020 through most of 2021, both arrivals and departures dropped to near-zero levels. This confirms the significant impact of border closures and strict travel restrictions during the COVID period. The recovery phase begins in early 2022, where a rapid and sustained increase in both arrivals and departures is visible.
+## 6️⃣ Dashboard Features
+| Feature | Value |
+|--------|-------|
+| Year comparison (pre-COVID vs recovery) | Enables long-term trend evaluation |
+| Age segmentation | Supports labour supply / workforce planning |
+| Citizenship view | Tourism vs returning NZ resident patterns |
+| Net movement metric | Quick proxy for migration / population change |
+| Geographic heat map | Helps decide which regions warrant promotional spending |
 
-By 2023–2024, monthly border movements return to levels comparable to, and in some months exceeding, pre-COVID volumes, indicating a strong rebound in international travel activity.
+---
 
-### 6.2 Net Arrivals and Population Flow Dynamics
+## 7️⃣ Limitations & Next Steps
+**Limitations**
+- Dataset is aggregated; no purpose-of-trip attributes
+- Does not incorporate economic or visa policy drivers
 
-The yearly net arrivals chart highlights meaningful differences across the three periods.
+**Future Enhancements**
+- Integrate labour market / visa / GDP indicators
+- Add forecasting (e.g., Tableau trend lines or ML model)
+- Deploy dashboard inside a business-facing web UI
 
-- In 2019, New Zealand experienced a positive net inflow.
-- During 2020 and 2021, net arrivals turned negative, indicating that departures exceeded arrivals during the height of border restrictions.
-- A strong positive net inflow appears in 2022 and peaks in 2023, suggesting a period of population rebound and increased inbound movement following border reopening.
-- In 2024 and 2025, net arrivals decline again, approaching zero or turning slightly negative, indicating a more balanced or stabilising flow between arrivals and departures.
+---
 
-This pattern suggests that post-COVID recovery involved an initial surge of inbound movement, followed by a gradual normalisation rather than continuous growth.
+## 8️⃣ About the Analyst
+👋 **Yang Li – Data Analyst (Auckland)**  
+Experienced in Tableau, SQL, Python (ETL), AWS fundamentals, business analytics, and dashboard storytelling.
 
-### 6.3 Travel Mode Structure: Air vs Non-Air
-
-The share of arrivals by travel mode shows that air travel overwhelmingly dominates international arrivals across all years in the dataset.
-
-Even during the COVID period, when total volumes were extremely low, the proportion of non-air travel remains minimal. Post-COVID recovery does not significantly alter this structure: air travel continues to account for nearly all international arrivals.
-
-This indicates that recovery in border movements is primarily driven by air connectivity, while cruise and other sea-based travel remain structurally small contributors to total arrivals throughout the period.
-
-### 6.4 Demographic Patterns by Age Group
-
-The small-multiples view of monthly arrivals by age group reveals notable differences in recovery patterns:
-
-- The 18–39 and 40–69 age groups consistently represent the largest volumes of arrivals both before and after COVID.
-- All age groups experience near-total collapse during 2020–2021, reinforcing the systemic impact of border restrictions.
-- Post-2022 recovery is strongest and most sustained among the working-age population (18–39 and 40–69).
-- The 70+ age group shows a slower and lower-volume recovery, remaining significantly below pre-COVID levels even in later years.
-- The 01–17 group recovers alongside overall trends but at lower absolute volumes, reflecting dependence on family travel patterns.
-
-These patterns suggest that post-COVID international mobility has been led primarily by working-age travellers rather than older cohorts.
-
-### 6.5 Arrivals by Citizenship
-
-The yearly arrivals by citizenship chart shows that non-New Zealand citizens consistently account for a larger share of arrivals than New Zealand citizens across all years.
-
-- Both NZ and non-NZ arrivals decline sharply during the COVID period.
-- From 2022 onwards, non-NZ arrivals rebound more strongly than NZ citizen arrivals.
-- By 2024–2025, non-NZ arrivals exceed pre-COVID levels, while NZ citizen arrivals recover more gradually.
-
-This indicates that international border recovery has been driven largely by overseas travellers rather than returning New Zealand residents.
-
-### 6.6 Gender Composition of Arrivals
-
-The share of arrivals by sex shows a relatively stable gender distribution over time.
-
-- Both male and female arrivals decline sharply during COVID.
-- Post-COVID recovery does not materially alter the gender balance of arrivals.
-- No significant divergence is observed between male and female recovery patterns at the yearly level.
-
-This suggests that COVID-related disruptions affected international travel broadly rather than disproportionately impacting one gender group.
-
-### 6.7 Geographic Patterns of Overseas Arrivals
-
-The geographic distribution maps show that New Zealand’s main overseas source countries remain largely consistent across the pre-COVID, COVID, and post-COVID periods.
-
-Across all periods, arrivals are highly concentrated in a small number of countries, particularly Australia, followed by the United States, Canada, China, South Korea, Hong Kong, and Singapore. While overall arrival volumes drop sharply during the COVID period and recover afterward, the relative importance of these source countries does not change substantially.
-
-During the COVID period, arrival volumes decline across all countries rather than shifting toward new regions, indicating a broad suppression of international travel rather than a reconfiguration of travel origins. In the post-COVID period, volumes increase again, especially from Australia and North America, but the geographic pattern closely resembles the pre-COVID distribution.
-
-Overall, the maps suggest that COVID-19 primarily affected the scale of international travel to New Zealand rather than the structure of overseas connections. New Zealand’s international travel network appears resilient, with recovery occurring along existing routes instead of through the emergence of new major source countries.
-
-## 7. Key Insights & Implications
-
-- COVID-19 caused a temporary but severe disruption to New Zealand’s border movements, with recovery driven by a rapid return of air-based international travel rather than structural changes in travel origins.
-- Post-COVID border recovery was led by non-New Zealand citizens and working-age travellers, highlighting the importance of international tourism, education, and labour-related mobility in overall border activity.
-- Net migration patterns indicate that the post-COVID rebound represented a short-term surge rather than a sustained increase in population inflow.
-- The geographic distribution of overseas arrivals remains highly concentrated, suggesting that New Zealand’s international connectivity has recovered along existing routes rather than diversifying into new markets.
-
-## 8. Limitations & Next Steps
-
-- This analysis focuses on observed border movement patterns and does not attempt to model causal relationships or forecast future travel volumes.
-- The dataset is aggregated at the daily level and does not capture individual traveller behaviour or repeat travel.
-- Future analysis could incorporate economic indicators, visa categories, or labour market data to better understand the drivers behind post-COVID migration and travel recovery.
-
-## Live Interactive Dashboard
-
-Explore the full interactive Tableau dashboard here:
-
-👉 https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025?publish=yes
+---
 
