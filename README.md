@@ -1,4 +1,4 @@
-# 🇳🇿 New Zealand Border Movements Analytics Dashboard (2019–2025)
+#New Zealand Border Movements Analytics Dashboard (2019–2025)
 **Business-Focused Travel & Migration Insights for Tourism and Policy Stakeholders**  
 📊 Tableau Dashboard | 📁 Stats NZ Data | 🧭 Actionable Business Insights
 
