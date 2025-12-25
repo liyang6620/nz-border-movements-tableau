@@ -40,10 +40,10 @@ After border closures, stakeholders need to know:
 ## Solution Overview
 
 This project delivers an **interactive Tableau dashboard** that allows users to:
-✔ Compare yearly trends pre-/during-/post-COVID  
-✔ Filter by age, citizenship, sex, travel mode, and country  
-✔ View net migration movement as a simple population-change proxy  
-✔ Interpret insights without needing technical or database skills  
+- Compare yearly trends pre-/during-/post-COVID  
+- Filter by age, citizenship, sex, travel mode, and country  
+- View net migration movement as a simple population-change proxy  
+- Interpret insights without needing technical or database skills  
 
 **Dashboard Design Goals**
 - Business-first: enable decisions, not just charts
