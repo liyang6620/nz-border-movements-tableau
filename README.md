@@ -81,16 +81,23 @@ No Python or ETL tooling was required — data modelling occurred **inside Table
 | Arrivals remain concentrated (AU, US, CN) | Marketing should reinforce proven markets before expanding |
 
 ---
+### Business Value 
+- Help NZ tourism board decide which origin markets deserve most marketing budget
+- Inform labour-market immigration forecast (student vs worker inflow)
+- Assist government or airports with planning seasonal resource allocation
 
 ## Dashboard Features
 
-| Feature | Value |
-|--------|-------|
-| Year selector | Compare pre-/COVID/post-COVID periods |
-| Citizenship segmentation | Distinguish tourism vs NZ residents |
-| Age filters | Workforce-relevant mobility insights |
-| Net migration metric | Quick proxy for population change |
-| Interactive map | Identify high-value origin markets |
+| Feature | What It Helps You Answer |
+|--------|---------------------------|
+| **Overall Trend View (2019–2025)** | Shows how border movements changed before, during, and after COVID restrictions |
+| **Arrivals vs Departures Comparison** | Reveals whether NZ experienced net positive or negative movement in a selected timeframe |
+| **Citizenship Filter (NZ vs Non-NZ)** | Separates returning residents from inbound tourists to identify who drives recovery |
+| **Age Group Breakdown (18–39, 40+, etc.)** | Indicates whether working-age travellers or older demographics contribute most to movement |
+| **Travel Mode Selector – Air vs No-Air** | Compares the scale of air-travel recovery vs cruise-based recovery |
+| **Top Origin Countries Ranking** | Highlights which countries (AU, US, CN, etc.) are key sources of arrivals |
+| **Net Movement Metric (Arrivals – Departures)** | Provides a lightweight population-change proxy without demographic modelling |
+| **Interactive Origin Map (global filter)** | Selecting a country on the map updates the entire dashboard to focus on that origin group |
 
 ---
 
@@ -111,7 +118,6 @@ No Python or ETL tooling was required — data modelling occurred **inside Table
 
 **Yang Li – Data Analyst (Auckland, NZ)**  
 Skills: Tableau, SQL, Python (ETL), AWS fundamentals, dashboard storytelling  
-Portfolio: *(link placeholder – to add when portfolio repo is ready)*
 
 
 
