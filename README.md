@@ -1,5 +1,7 @@
 # New Zealand Border Movements – Tableau Analytics Dashboard (2019–2025)
 
+[![CI](https://github.com/liyang6620/nz-border-movements-tableau/actions/workflows/ci.yml/badge.svg)](https://github.com/liyang6620/nz-border-movements-tableau/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Business-focused analytics for tourism, labour mobility, and population recovery planning**
 
 🔗 **Live Interactive Dashboard:**  
