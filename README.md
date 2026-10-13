@@ -1,125 +1,110 @@
-# New Zealand Border Movements – Tableau Analytics Dashboard (2019–2025)
+# New Zealand Border Movement Recovery Monitor
 
 [![CI](https://github.com/liyang6620/nz-border-movements-tableau/actions/workflows/ci.yml/badge.svg)](https://github.com/liyang6620/nz-border-movements-tableau/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Business-focused analytics for tourism, labour mobility, and population recovery planning**
+A Tableau BI project that tracks New Zealand traveller movements before, during, and after COVID-19 using provisional Stats NZ data.
 
-🔗 **Live Interactive Dashboard:**  
-https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025?publish=yes
+![Dashboard overview](screenshots/dashboard-desktop.png)
 
----
+[Open the interactive Tableau Public dashboard](https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025)
 
-## Executive Summary
+## Decision Context
 
-This Tableau analytics project examines New Zealand’s international border movements across three structural phases — **pre-COVID, COVID restrictions, and post-COVID recovery (2019–2025)** — and translates the findings into **actionable business insights** for tourism, immigration, and labour-market stakeholders.
+The dashboard answers a deliberately narrow set of questions supported by the source data:
 
-**Top findings at a glance:**
-- Recovery is **led by non-NZ citizens** and **working-age arrivals (18–39)**.
-- Air travel accounts for **nearly all inbound volume**; cruise-based recovery is negligible.
-- 2023 surge represents a **temporary rebound**, while **2024–25 trends flatten**, signaling stabilization rather than continuous growth.
+- How have monthly arrivals and departures changed since 2019?
+- How close are 2025 arrival volumes to the comparable 2019 period?
+- How do movement patterns vary by age group and citizenship?
+- Which countries appear most often as the last overseas port before arrival?
+- What share of arrivals travel by air?
 
----
+It does **not** infer traveller purpose, residence, tourism demand, labour supply, or migration status.
 
-## Business Problem
+## Headline Results
 
-New Zealand’s economy depends heavily on:
-| Area | Why it matters |
-|------|----------------|
-| Tourism | Major GDP and regional employment contributor |
-| Labour supply | Hospitality, agriculture, and healthcare rely on migrant inflows |
-| International students | Strong influence on rental market, spending, and population |
-| Net migration | Shapes labour force and long-term population growth |
+All comparisons use January-November so that periods are like-for-like. The extract is current through 8 December 2025, but December is excluded because it is incomplete.
 
-After border closures, stakeholders need to know:
+| Metric | Result | Definition |
+| --- | ---: | --- |
+| 2025 arrivals | 6.02M | Arrival movements, Jan-Nov 2025 |
+| Year-on-year change | +4.3% | 2025 Jan-Nov vs 2024 Jan-Nov arrivals |
+| Recovery vs 2019 | 94.2% | 2025 Jan-Nov arrivals / 2019 Jan-Nov arrivals |
+| Net traveller movements | -1.5K | Arrivals minus departures, Jan-Nov 2025 |
+| Air share | 99.2% | Air arrivals / all arrivals, Jan-Nov 2025 |
 
-- Which traveller groups are returning fastest?
-- Is post-COVID growth sustainable or a one-off spike?
-- Which countries deserve tourism marketing budget?
-- Has inbound labour supply returned enough to relieve shortages?
+The largest 2024 arrival age band is 40-69 (2.90M), not 18-39 (2.21M). This is a descriptive traveller-movement result and should not be interpreted as a labour-market conclusion.
 
----
+## Dashboard Design
 
-## Solution Overview
+The 1200 x 900 desktop layout prioritises the monthly movement trend and a compact KPI strip. Supporting views cover annual net traveller movements, age, citizenship, and last overseas port country; air share is summarised once in the KPI strip instead of repeated in a low-information chart. A purpose-built phone layout stacks the same analytical sequence instead of shrinking the desktop canvas.
 
-This project delivers an **interactive Tableau dashboard** that allows users to:
-- Compare yearly trends pre-/during-/post-COVID  
-- Filter by age, citizenship, sex, travel mode, and country  
-- View net migration movement as a simple population-change proxy  
-- Interpret insights without needing technical or database skills  
+![Phone layout](screenshots/dashboard-mobile.png)
 
-**Dashboard Design Goals**
-- Business-first: enable decisions, not just charts
-- Reduce cognitive load: visual clarity > complexity
-- Support self-exploration by non-technical users
+Key safeguards are visible in the dashboard:
 
----
+- Incomplete months are excluded from analytical views.
+- Data freshness is stated explicitly.
+- `Net Traveller Movements` is not labelled or described as net migration.
+- `Last Overseas Port Country` is not presented as origin, residence, or nationality.
 
-## Data & Preparation
+## Data
 
-| Item | Details |
-|------|---------|
-| Data Source | Stats NZ – International travel (provisional) |
-| Range | Jan 2019 – Dec 2025 |
-| Raw Files | 3 × CSV snapshots downloaded directly from Stats NZ |
-| Preparation Method | Tableau Wildcard Union + data cleaning inside Tableau |
+| Item | Value |
+| --- | --- |
+| Source | Stats NZ international travel, provisional |
+| Coverage | 1 Jan 2019 to 8 Dec 2025 |
+| Latest complete month | Nov 2025 |
+| Rows | 2,222,255 |
+| Total traveller movements | 60,866,193 |
+| Grain | Aggregated traveller movements by date and available dimensions |
+| Packaged extract | `workbook/nz-border-movements.twbx` |
+| Validation extract | `data/nz_border_movements_2019_2025.hyper` |
 
-**Derived fields created**
-- `Net Movement = Arrivals – Departures`
-- `Period Phase = Pre-COVID / COVID / Post-COVID`
-- Monthly aggregation fields for trend comparison
+See [data dictionary](docs/DATA_DICTIONARY.md), [metric definitions](docs/METRIC_DEFINITIONS.md), and [validation evidence](docs/VALIDATION.md).
 
-No Python or ETL tooling was required — data modelling occurred **inside Tableau**, reflecting how BI analysts often work with spreadsheet-based datasets in the real world.
+## Repository Structure
 
----
+```text
+.
+|-- data/                 # Hyper extract used by automated data checks
+|-- docs/                 # Definitions, assumptions, and validation evidence
+|-- screenshots/          # Desktop and phone dashboard evidence
+|-- scripts/              # Deterministic TWBX transformation tooling
+|-- tests/                # Workbook and Hyper integrity tests
+`-- workbook/             # Packaged Tableau workbook
+```
 
-## Key Insights & Commercial Implications
+## Reproduce and Validate
 
-| Insight | What It Means for Business |
-|--------|-----------------------------|
-| Recovery almost entirely driven by **air travel** | Partner with airlines; cruise promotions deliver low ROI |
-| **Non-NZ citizens** drive inbound recovery | Target tourism, study, and work visa marketing at overseas audiences |
-| Post-COVID rebound **peaks in 2023, then stabilises** | Avoid over-forecasting; plan workforce & enrolment on stable baselines |
-| Strongest recovery among **18–39 working-age group** | Young-talent and labour-visa programs can relieve shortages |
-| Arrivals remain concentrated (AU, US, CN) | Marketing should reinforce proven markets before expanding |
+Requirements:
 
----
-### Business Value 
-- Help NZ tourism board decide which origin markets deserve most marketing budget
-- Inform labour-market immigration forecast (student vs worker inflow)
-- Assist government or airports with planning seasonal resource allocation
+- Python 3.12+
+- Tableau Desktop or Tableau Public 2025.3+ to edit the workbook
 
-## Dashboard Features
+```bash
+python -m pip install -r requirements-dev.txt
+python -m unittest discover -s tests -v
+```
 
-| Feature | What It Helps You Answer |
-|--------|---------------------------|
-| **Overall Trend View (2019–2025)** | Shows how border movements changed before, during, and after COVID restrictions |
-| **Arrivals vs Departures Comparison** | Reveals whether NZ experienced net positive or negative movement in a selected timeframe |
-| **Citizenship Filter (NZ vs Non-NZ)** | Separates returning residents from inbound tourists to identify who drives recovery |
-| **Age Group Breakdown (18–39, 40+, etc.)** | Indicates whether working-age travellers or older demographics contribute most to movement |
-| **Travel Mode Selector – Air vs No-Air** | Compares the scale of air-travel recovery vs cruise-based recovery |
-| **Top Origin Countries Ranking** | Highlights which countries (AU, US, CN, etc.) are key sources of arrivals |
-| **Net Movement Metric (Arrivals – Departures)** | Provides a lightweight population-change proxy without demographic modelling |
-| **Interactive Origin Map (global filter)** | Selecting a country on the map updates the entire dashboard to focus on that origin group |
+Open `workbook/nz-border-movements.twbx` to inspect or publish the dashboard. The packaged workbook contains its own Hyper extract and does not require the original spreadsheet path.
 
----
+To deterministically reapply reviewed workbook definitions and layout changes:
 
-## Limitations & Next Steps
+```bash
+python scripts/transform_workbook.py
+```
 
-**Limitations**
-- Dataset is aggregated; no purpose-of-travel metadata
-- Cannot distinguish student vs worker vs tourist
+## Limitations
 
-**Possible Enhancements**
-- Incorporate visa, GDP, and unemployment datasets
-- Use Tableau forecasting or ML to predict future trends
-- Deploy dashboard into a business-facing web app (AWS + Tableau Embed)
+- December 2025 is partial and excluded from trend and comparison views.
+- The data counts movement events, not unique people.
+- Arrivals minus departures is not net migration and cannot measure population change.
+- Citizenship is not residence, visa type, trip purpose, or visitor status.
+- Last overseas port country is the nearest/last overseas port in the journey, not necessarily the traveller's origin.
+- Provisional data may be revised by Stats NZ.
+- The workbook is a portfolio-grade BI demonstration, not an operational forecasting or policy system.
 
----
+## Governance
 
-## About the Analyst
-
-**Yang Li – Data Analyst (Auckland, NZ)**  
-Skills: Tableau, SQL, Python (ETL), AWS fundamentals, dashboard storytelling  
-
-
+Contributions are described in [CONTRIBUTING.md](CONTRIBUTING.md), security reporting in [SECURITY.md](SECURITY.md), and release history in [CHANGELOG.md](CHANGELOG.md). Code and workbook configuration are available under the [MIT License](LICENSE); the underlying data remains subject to the source provider's terms.
 
