@@ -6,7 +6,7 @@ A Tableau BI project that tracks New Zealand traveller movements before, during,
 
 ![Dashboard overview](screenshots/dashboard-desktop.png)
 
-[Open the interactive Tableau Public dashboard](https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/ImpactofCOVID-19onNewZealandBorderMovements20192025)
+[Open the interactive Tableau Public dashboard](https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/NewZealandBorderMovementRecoveryMonitor)
 
 ## Decision Context
 
