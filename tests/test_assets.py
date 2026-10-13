@@ -71,7 +71,25 @@ class WorkbookAssetTests(unittest.TestCase):
         self.assertIn("Net Traveller Movements", self.twb_text)
         self.assertNotIn("Net Arrivals", self.twb_text)
         self.assertIn("Last Overseas Port Country", self.twb_text)
+        self.assertIn("OF 2019 JAN-NOV", self.twb_text)
+        self.assertIn("2025 / 2019 ARRIVALS", self.twb_text)
+        self.assertIn("New Zealand Border Movement Monitor", self.twb_text)
+        self.assertNotIn(">          VS 2019  </run>", self.twb_text)
         self.assertIn("DATETRUNC(&apos;month&apos;", self.twb_text)
+
+    def test_citizenship_series_have_labels_and_legends(self):
+        self.assertIn("Annual Arrivals by Citizenship", self.twb_text)
+        self.assertIn("NZ citizens", self.twb_text)
+        self.assertIn("Non-NZ citizens", self.twb_text)
+
+        dashboard = self.root.find("./dashboards/dashboard")
+        citizenship_legends = [
+            zone
+            for zone in dashboard.findall(".//zone")
+            if zone.attrib.get("type-v2") == "color"
+            and "citizenship" in zone.attrib.get("param", "")
+        ]
+        self.assertGreaterEqual(len(citizenship_legends), 2)
 
     def test_authored_phone_layout_exists(self):
         phone = self.root.find("./dashboards/dashboard/devicelayouts/devicelayout")

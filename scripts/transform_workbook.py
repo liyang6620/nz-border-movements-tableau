@@ -57,25 +57,48 @@ def sheet_zone(zone_id: int, name: str, x: int, y: int, w: int, h: int) -> str:
       </zone>"""
 
 
+def metric_runs(
+    label: str,
+    value: str,
+    value_color: str = "#176B87",
+    suffix: str = "",
+) -> str:
+    suffix_run = (
+        f"<run fontcolor='#5C677D' fontname='Tableau Book' fontsize='8'> {suffix}</run>"
+        if suffix
+        else ""
+    )
+    return f"""
+          <run bold='true' fontcolor='#5C677D' fontname='Tableau Book' fontsize='8'>{label}</run>
+          <run bold='true' fontcolor='{value_color}' fontname='Tableau Book' fontsize='18'>&#10;{value}</run>{suffix_run}
+        """
+
+
+def inline_metric_runs(
+    label: str,
+    value: str,
+    value_color: str = "#176B87",
+) -> str:
+    return f"""
+          <run bold='true' fontcolor='#5C677D' fontname='Tableau Book' fontsize='8'>{label}  </run>
+          <run bold='true' fontcolor='{value_color}' fontname='Tableau Book' fontsize='15'>{value}</run>
+        """
+
+
 def dashboard_xml() -> str:
     title_runs = """
-          <run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='22'>New Zealand Border Movement Recovery Monitor</run>
+          <run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='21'>New Zealand Border Movement Monitor</run>
         """
     subtitle_runs = """
           <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='10'>Complete months through Nov 2025 | Provisional Stats NZ traveller movements</run>
         """
-    kpi_runs = """
-          <run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='10'>2025 JAN-NOV ARRIVALS</run>
-          <run bold='true' fontcolor='#176B87' fontname='Tableau Book' fontsize='20'>&#10;6.02M</run>
-          <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='9'>          YOY VS 2024  </run>
-          <run bold='true' fontcolor='#20805D' fontname='Tableau Book' fontsize='16'>+4.3%</run>
-          <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='9'>          VS 2019  </run>
-          <run bold='true' fontcolor='#176B87' fontname='Tableau Book' fontsize='16'>94.2%</run>
-          <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='9'>          NET MOVEMENTS  </run>
-          <run bold='true' fontcolor='#B64B4B' fontname='Tableau Book' fontsize='16'>-1.5K</run>
-          <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='9'>          AIR SHARE  </run>
-          <run bold='true' fontcolor='#176B87' fontname='Tableau Book' fontsize='16'>99.2%</run>
-        """
+    desktop_metrics = [
+        (3, 1800, 18000, metric_runs("2025 JAN-NOV ARRIVALS", "6.02M")),
+        (4, 20600, 17000, metric_runs("YEAR ON YEAR VS 2024", "+4.3%", "#20805D")),
+        (5, 38400, 22000, metric_runs("2025 JAN-NOV ARRIVALS", "94.2%", suffix="OF 2019 JAN-NOV")),
+        (6, 61200, 17000, metric_runs("NET MOVEMENTS", "-1.5K", "#B64B4B")),
+        (7, 79000, 19200, metric_runs("AIR ARRIVAL SHARE", "99.2%")),
+    ]
     note_runs = """
           <run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='10'>How to read this dashboard</run>
           <run fontcolor='#4B5568' fontname='Tableau Book' fontsize='9'>&#10;Data through 8 Dec 2025; December is excluded from trend and comparison views because it is incomplete. Net Traveller Movements = arrivals minus departures. It is not net migration or population change. “Last Overseas Port Country” describes the nearest/last overseas port, not residence, nationality, or trip purpose.</run>
@@ -84,48 +107,59 @@ def dashboard_xml() -> str:
     desktop_zones = "\n".join(
         [
             "<zone h='100000' id='1' type-v2='layout-basic' w='100000' x='0' y='0'>",
-            text_zone(2, 1800, 1200, 96400, 4000, title_runs, "#F7F8FA", 4),
-            text_zone(17, 1800, 5200, 96400, 2500, subtitle_runs, "#F7F8FA", 2),
-            text_zone(3, 1800, 8200, 96400, 9800, kpi_runs, "#FFFFFF", 10),
-            sheet_zone(10, "Monthly Arrivals vs Departures", 1800, 19000, 60000, 30000),
-            sheet_zone(11, "Annual Net Traveller Movements", 63000, 19000, 35200, 30000),
-            sheet_zone(12, "Monthly Arrivals by Age Group", 1800, 50000, 31200, 26000),
-            sheet_zone(13, "Yearly Arrivals by Citizenship", 34000, 50000, 31200, 26000),
-            sheet_zone(14, "Arrivals by Last Overseas Port Country", 66200, 50000, 32000, 26000),
+            text_zone(2, 1800, 1200, 96400, 4200, title_runs, "#F7F8FA", 4),
+            text_zone(17, 1800, 5400, 96400, 2400, subtitle_runs, "#F7F8FA", 2),
+            *[
+                text_zone(zone_id, x, 8400, width, 9400, runs, "#FFFFFF", 8)
+                for zone_id, x, width, runs in desktop_metrics
+            ],
+            sheet_zone(10, "Monthly Arrivals vs Departures", 1800, 19000, 60800, 32000),
+            sheet_zone(11, "Annual Net Traveller Movements", 63600, 19000, 34600, 32000),
+            sheet_zone(12, "Monthly Arrivals by Age Group", 1800, 52200, 30000, 32000),
+            sheet_zone(13, "Yearly Arrivals by Citizenship", 32800, 52200, 32200, 32000),
+            sheet_zone(14, "Arrivals by Last Overseas Port Country", 65800, 52200, 32400, 32000),
             # Air share is already surfaced as a KPI. Keeping the near-100%
             # travel-mode chart on the dashboard repeated the same signal and
             # forced unreadable year labels into a small panel.
-            text_zone(16, 1800, 77000, 96400, 21500, note_runs, "#F4F7FA", 10),
+            text_zone(16, 1800, 85400, 96400, 13000, note_runs, "#F4F7FA", 8),
             "</zone>",
-            f"""<zone h='5500' id='20' name='Monthly Arrivals vs Departures' pane-specification-id='0' param='[{DATASOURCE}].[none:direction_code:nk]' show-title='false' type-v2='color' w='12000' x='48500' y='20200' />""",
+            f"""<zone h='5000' id='20' name='Monthly Arrivals vs Departures' pane-specification-id='0' param='[{DATASOURCE}].[none:direction_code:nk]' show-title='false' type-v2='color' w='12000' x='49000' y='20200' />""",
+            f"""<zone h='5500' id='21' name='Yearly Arrivals by Citizenship' pane-specification-id='0' param='[{DATASOURCE}].[none:citizenship:nk]' show-title='false' type-v2='color' w='15000' x='51500' y='56500' />""",
         ]
     )
 
     phone_title = """
-          <run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='17'>NZ Border Movement Recovery Monitor</run>
-          <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='9'>&#10;Complete months through Nov 2025</run>
+          <run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='14'>NZ Border Movements</run>
         """
-    phone_kpis = """
-          <run bold='true' fontcolor='#176B87' fontname='Tableau Book' fontsize='15'>6.02M arrivals</run>
-          <run fontcolor='#4B5568' fontname='Tableau Book' fontsize='9'>   YoY </run><run bold='true' fontcolor='#20805D' fontsize='11'>+4.3%</run>
-          <run fontcolor='#4B5568' fontname='Tableau Book' fontsize='9'>   vs 2019 </run><run bold='true' fontcolor='#176B87' fontsize='11'>94.2%</run>
-          <run fontcolor='#4B5568' fontname='Tableau Book' fontsize='9'>&#10;Net movements </run><run bold='true' fontcolor='#B64B4B' fontsize='11'>-1.5K</run>
-          <run fontcolor='#4B5568' fontname='Tableau Book' fontsize='9'>   Air share </run><run bold='true' fontcolor='#176B87' fontsize='11'>99.2%</run>
+    phone_subtitle = """
+          <run fontcolor='#5C677D' fontname='Tableau Book' fontsize='9'>Complete months through Nov 2025</run>
         """
+    phone_metrics = [
+        (3, inline_metric_runs("2025 JAN-NOV ARRIVALS", "6.02M")),
+        (4, inline_metric_runs("YEAR ON YEAR VS 2024", "+4.3%", "#20805D")),
+        (5, inline_metric_runs("2025 / 2019 ARRIVALS", "94.2%")),
+        (6, inline_metric_runs("NET MOVEMENTS", "-1.5K", "#B64B4B")),
+        (7, inline_metric_runs("AIR ARRIVAL SHARE", "99.2%")),
+    ]
     phone_zones = "\n".join(
         [
             "<zone h='100000' id='42' type-v2='layout-basic' w='100000' x='0' y='0'>",
             "<zone h='98000' id='41' param='vert' type-v2='layout-flow' w='97000' x='1500' y='1000'>",
-            text_zone(2, 1500, 800, 97000, 6200, phone_title, "#F7F8FA", 4),
-            text_zone(3, 1500, 7600, 97000, 8500, phone_kpis, "#FFFFFF", 8),
-            sheet_zone(10, "Monthly Arrivals vs Departures", 1500, 17000, 97000, 18500),
-            sheet_zone(11, "Annual Net Traveller Movements", 1500, 36500, 97000, 13000),
-            sheet_zone(12, "Monthly Arrivals by Age Group", 1500, 50500, 97000, 13000),
-            sheet_zone(13, "Yearly Arrivals by Citizenship", 1500, 64500, 97000, 13000),
-            sheet_zone(14, "Arrivals by Last Overseas Port Country", 1500, 78500, 97000, 14000),
-            text_zone(16, 1500, 93500, 97000, 5500, note_runs, "#F4F7FA", 6),
+            text_zone(2, 1500, 800, 97000, 3600, phone_title, "#F7F8FA", 4),
+            text_zone(17, 1500, 4400, 97000, 2600, phone_subtitle, "#F7F8FA", 3),
+            *[
+                text_zone(zone_id, 1500, 0, 97000, 4200, runs, "#FFFFFF", 6)
+                for zone_id, runs in phone_metrics
+            ],
+            sheet_zone(10, "Monthly Arrivals vs Departures", 1500, 27000, 97000, 15500),
+            sheet_zone(11, "Annual Net Traveller Movements", 1500, 43000, 97000, 11000),
+            sheet_zone(12, "Monthly Arrivals by Age Group", 1500, 55000, 97000, 14000),
+            sheet_zone(13, "Yearly Arrivals by Citizenship", 1500, 70000, 97000, 12000),
+            sheet_zone(14, "Arrivals by Last Overseas Port Country", 1500, 83000, 97000, 13000),
+            text_zone(16, 1500, 96500, 97000, 5000, note_runs, "#F4F7FA", 5),
             "</zone>",
             "</zone>",
+            f"""<zone h='4200' id='21' name='Yearly Arrivals by Citizenship' pane-specification-id='0' param='[{DATASOURCE}].[none:citizenship:nk]' show-title='false' type-v2='color' w='40000' x='57000' y='72500' />""",
         ]
     )
 
@@ -185,6 +219,26 @@ def add_complete_month_filter(worksheet: str) -> str:
     return worksheet
 
 
+def improve_worksheet_semantics(worksheet: str) -> str:
+    if "<worksheet name='Yearly Arrivals by Citizenship'>" in worksheet:
+        worksheet = worksheet.replace(
+            "Annual Arrivals by Citizenship Status",
+            "Annual Arrivals by Citizenship",
+            1,
+        )
+        worksheet = worksheet.replace(
+            "&lt;Sheet Name&gt;",
+            "Annual Arrivals by Citizenship",
+            1,
+        )
+        worksheet = worksheet.replace(
+            "<run bold='true'>Month: </run>",
+            "<run bold='true'>Year: </run>",
+            1,
+        )
+    return worksheet
+
+
 def transform_twb(xml: str) -> str:
     replacements = [
         ("Impact of COVID-19 on New Zealand Border Movements (2019–2025)", "New Zealand Border Movement Recovery Monitor"),
@@ -205,13 +259,27 @@ def transform_twb(xml: str) -> str:
         "<column caption='Last Overseas Port Country' datatype='string' name='[closest_overseas_port_country]'",
     )
     xml = xml.replace(
+        "<column caption='Citizenship' datatype='string' name='[citizenship]' role='dimension' type='nominal' />",
+        """<column caption='Citizenship status' datatype='string' name='[citizenship]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;NZ&quot;' value='NZ citizens' />
+                <alias key='&quot;non-NZ&quot;' value='Non-NZ citizens' />
+              </aliases>
+            </column>""",
+    )
+    xml = xml.replace(
         "<run fontsize='9'>&lt;Sheet Name&gt;</run>",
         "<run bold='true' fontcolor='#172033' fontname='Tableau Book' fontsize='11'>&lt;Sheet Name&gt;</run>",
     )
     xml = xml.replace("value='Number of Travellers'", "value='Traveller movements'")
 
     worksheet_pattern = re.compile(r"<worksheet name='[^']+'>.*?</worksheet>", re.DOTALL)
-    xml = worksheet_pattern.sub(lambda match: add_complete_month_filter(match.group(0)), xml)
+    xml = worksheet_pattern.sub(
+        lambda match: improve_worksheet_semantics(
+            add_complete_month_filter(match.group(0))
+        ),
+        xml,
+    )
 
     dashboard_pattern = re.compile(
         r"<dashboard enable-sort-zone-taborder='true' name='New Zealand Border Movement Recovery Monitor'>.*?</dashboard>",

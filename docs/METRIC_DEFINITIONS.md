@@ -18,13 +18,13 @@ This counts arrival movements, not unique people.
 
 Result: **+4.3%** (6,016,113 vs 5,767,833).
 
-## Recovery vs 2019
+## 2025 Arrivals Relative to 2019
 
 ```text
 2025 Jan-Nov arrivals / 2019 Jan-Nov arrivals
 ```
 
-Result: **94.2%** (6,016,113 vs 6,388,800). This compares movement volume only; it is not an economic recovery index.
+Result: **94.2%** (6,016,113 vs 6,388,800). In other words, 2025 January-November arrival volume reached 94.2% of the corresponding 2019 level. This compares traveller-movement volume only; it is not an economic recovery index or a growth rate.
 
 ## Net Traveller Movements
 

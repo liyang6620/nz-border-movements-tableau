@@ -1,4 +1,4 @@
-# New Zealand Border Movement Recovery Monitor
+# New Zealand Border Movement Monitor
 
 [![CI](https://github.com/liyang6620/nz-border-movements-tableau/actions/workflows/ci.yml/badge.svg)](https://github.com/liyang6620/nz-border-movements-tableau/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/liyang6620/nz-border-movements-tableau)](https://github.com/liyang6620/nz-border-movements-tableau/releases/latest)
@@ -18,7 +18,7 @@ An interactive Tableau BI project for monitoring New Zealand traveller movements
 | Delivery | Interactive Tableau dashboard with authored desktop and phone layouts |
 | Data scale | 2,222,255 aggregated rows and 60,866,193 traveller movements |
 | Coverage | 1 Jan 2019 to 8 Dec 2025; analytical views use complete months through Nov 2025 |
-| Core analysis | Arrivals, departures, year-on-year change, recovery vs 2019, net traveller movements, age, citizenship, port country, and travel mode |
+| Core analysis | Arrivals, departures, year-on-year change, arrival volume relative to 2019, net traveller movements, age, citizenship, port country, and travel mode |
 | Quality controls | Hyper integrity tests, workbook structure checks, semantic safeguards, screenshot checks, and GitHub Actions CI |
 | Reproducibility | Deterministic Python transformation for reviewed workbook definitions and layout changes |
 
@@ -50,7 +50,7 @@ All comparisons use January-November to keep periods comparable. The extract is 
 | --- | ---: | --- |
 | 2025 arrivals | 6.02M | Arrival movements, Jan-Nov 2025 |
 | Year-on-year change | +4.3% | 2025 Jan-Nov vs 2024 Jan-Nov arrivals |
-| Recovery vs 2019 | 94.2% | 2025 Jan-Nov arrivals / 2019 Jan-Nov arrivals |
+| 2025 arrivals relative to 2019 | 94.2% | 2025 Jan-Nov arrivals equal 94.2% of 2019 Jan-Nov arrivals |
 | Net traveller movements | -1.5K | Arrivals minus departures, Jan-Nov 2025 |
 | Air share | 99.2% | Air arrivals / all arrivals, Jan-Nov 2025 |
 
@@ -58,7 +58,7 @@ The largest 2024 arrival age band is 40-69 (2.90M), not 18-39 (2.21M). This is a
 
 ## Dashboard Experience
 
-The desktop layout prioritises the monthly arrivals and departures trend, then moves through net movement, demographic composition, citizenship, and last overseas port country. Air share appears once in the KPI strip instead of being repeated in a low-information chart.
+The desktop layout follows an insight-first hierarchy: five fixed-width KPI blocks, the primary monthly movement trend in the upper-left, net movement alongside it, then demographic and geographic context. The citizenship series are explicitly labelled as NZ citizens and Non-NZ citizens instead of relying on colour alone. Air share appears once in the KPI strip instead of being repeated in a low-information chart.
 
 The phone layout preserves the same analytical sequence with readable charts and touch-friendly spacing.
 
