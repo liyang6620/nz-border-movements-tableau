@@ -91,6 +91,15 @@ class WorkbookAssetTests(unittest.TestCase):
         ]
         self.assertGreaterEqual(len(citizenship_legends), 2)
 
+    def test_dashboard_zones_do_not_use_box_borders(self):
+        dashboard = self.root.find("./dashboards/dashboard")
+        bordered_zones = [
+            zone
+            for zone in dashboard.findall(".//zone")
+            if zone.find("./zone-style/format[@attr='border-width']") is not None
+        ]
+        self.assertEqual(bordered_zones, [])
+
     def test_authored_phone_layout_exists(self):
         phone = self.root.find("./dashboards/dashboard/devicelayouts/devicelayout")
         self.assertIsNotNone(phone)

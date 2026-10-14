@@ -10,6 +10,7 @@ All notable changes to this project are documented here.
 - Split the desktop and phone KPI strips into fixed-width metric blocks so labels do not clip at published sizes.
 - Shortened the visible dashboard title and rebalanced both layouts around the primary movement trend.
 - Added explicit NZ citizen and Non-NZ citizen series labels and legends instead of relying on colour alone, with a dedicated legend row that does not overlap the chart title.
+- Removed repeated borders from titles, KPI blocks, and charts so hierarchy is carried by alignment and whitespace rather than boxed panels.
 
 ## [2.0.0] - 2026-10-14
 

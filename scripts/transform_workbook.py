@@ -27,9 +27,6 @@ NEW_HYPER_ENTRY = "Data/nz-border-movements/nz_border_movements_2019_2025.hyper"
 def zone_style(background: str = "#FFFFFF", margin: int = 6) -> str:
     return f"""<zone-style>
           <format attr='background-color' value='{background}' />
-          <format attr='border-color' value='#D9DEE7' />
-          <format attr='border-style' value='solid' />
-          <format attr='border-width' value='1' />
           <format attr='margin' value='{margin}' />
         </zone-style>"""
 
@@ -107,8 +104,8 @@ def dashboard_xml() -> str:
     desktop_zones = "\n".join(
         [
             "<zone h='100000' id='1' type-v2='layout-basic' w='100000' x='0' y='0'>",
-            text_zone(2, 1800, 1200, 96400, 4200, title_runs, "#F7F8FA", 4),
-            text_zone(17, 1800, 5400, 96400, 2400, subtitle_runs, "#F7F8FA", 2),
+            text_zone(2, 1800, 1200, 96400, 4200, title_runs, "#FFFFFF", 4),
+            text_zone(17, 1800, 5400, 96400, 2400, subtitle_runs, "#FFFFFF", 2),
             *[
                 text_zone(zone_id, x, 8400, width, 9400, runs, "#FFFFFF", 8)
                 for zone_id, x, width, runs in desktop_metrics
@@ -145,8 +142,8 @@ def dashboard_xml() -> str:
         [
             "<zone h='100000' id='42' type-v2='layout-basic' w='100000' x='0' y='0'>",
             "<zone h='98000' id='41' param='vert' type-v2='layout-flow' w='97000' x='1500' y='1000'>",
-            text_zone(2, 1500, 800, 97000, 3600, phone_title, "#F7F8FA", 4),
-            text_zone(17, 1500, 4400, 97000, 2600, phone_subtitle, "#F7F8FA", 3),
+            text_zone(2, 1500, 800, 97000, 3600, phone_title, "#FFFFFF", 4),
+            text_zone(17, 1500, 4400, 97000, 2600, phone_subtitle, "#FFFFFF", 3),
             *[
                 text_zone(zone_id, 1500, 0, 97000, 4200, runs, "#FFFFFF", 6)
                 for zone_id, runs in phone_metrics
@@ -166,7 +163,7 @@ def dashboard_xml() -> str:
     return f"""<dashboard enable-sort-zone-taborder='true' name='New Zealand Border Movement Recovery Monitor'>
       <style>
         <style-rule element='dashboard'>
-          <format attr='background-color' value='#F7F8FA' />
+          <format attr='background-color' value='#FFFFFF' />
         </style-rule>
       </style>
       <size maxheight='900' maxwidth='1200' minheight='900' minwidth='1200' />
