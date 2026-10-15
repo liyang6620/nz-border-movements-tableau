@@ -1,30 +1,39 @@
 # Metric Definitions
 
-Unless stated otherwise, headline 2025 metrics use January-November, the latest complete comparable period in the extract.
+Unless stated otherwise, headline 2025 metrics use January-November, the latest complete comparable period in the extract. The dashboard opens with `Direction = (All)`, so its default KPI context includes arrivals and departures. The cards recalculate when a supported direction, citizenship, or last-overseas-port selection is applied.
 
-## Arrivals
-
-```text
-SUM(total_movements) WHERE direction_code = "A"
-```
-
-This counts arrival movements, not unique people.
-
-## Year-on-Year Arrival Change
+## Selected Movements
 
 ```text
-(2025 Jan-Nov arrivals / 2024 Jan-Nov arrivals) - 1
+SUM(total_movements) in the active dashboard filter context
 ```
 
-Result: **+4.3%** (6,016,113 vs 5,767,833).
+Default result for Jan-Nov 2025: **12,033,708** movements (**12.034M**). A movement is a border-crossing event, not a unique person.
 
-## 2025 Arrivals Relative to 2019
+## Year-on-Year Change
 
 ```text
-2025 Jan-Nov arrivals / 2019 Jan-Nov arrivals
+(2025 Jan-Nov selected movements / 2024 Jan-Nov selected movements) - 1
 ```
 
-Result: **94.2%** (6,016,113 vs 6,388,800). In other words, 2025 January-November arrival volume reached 94.2% of the corresponding 2019 level. This compares traveller-movement volume only; it is not an economic recovery index or a growth rate.
+Default result: **+4.6%** (12,033,708 vs 11,506,047).
+
+## Recovery vs 2019
+
+```text
+2025 Jan-Nov selected movements / 2019 Jan-Nov selected movements
+```
+
+Default result: **94.4%** (12,033,708 vs 12,752,709). In other words, January-November 2025 movement volume reached 94.4% of the corresponding 2019 level. This is a period-to-period volume ratio, not a growth rate or an economic recovery index.
+
+With `Direction = Arrivals`, the same cards report:
+
+| Metric | Result | Compared values |
+| --- | ---: | ---: |
+| Selected movements | 6.016M | 6,016,113 arrivals |
+| Year-on-year change | +4.3% | 6,016,113 vs 5,767,833 |
+| Recovery vs 2019 | 94.2% | 6,016,113 vs 6,388,800 |
+| Air share | 99.23% | 5,970,054 / 6,016,113 |
 
 ## Net Traveller Movements
 
@@ -37,10 +46,17 @@ Result for Jan-Nov 2025: **-1,482**. This measure is not net migration, because 
 ## Air Share
 
 ```text
-air arrival movements / all arrival movements
+air movements / selected movements
 ```
 
-Result for Jan-Nov 2025: **99.23%** (5,970,054 / 6,016,113).
+Default result for Jan-Nov 2025: **99.2%** (11,942,820 / 12,033,708). With the arrivals filter applied, the result is **99.23%** (5,970,054 / 6,016,113).
+
+## Interactive Filter Scope
+
+- The direction control changes the four KPI cards and the movement context.
+- Selecting a citizenship series or last-overseas-port country updates the KPI context through dashboard filter actions.
+- Clearing a selection restores the broader context.
+- The net traveller movement chart remains a signed arrivals-minus-departures measure and is not redefined as migration.
 
 ## Complete Month Rule
 

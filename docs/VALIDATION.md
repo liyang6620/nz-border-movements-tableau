@@ -6,8 +6,8 @@ Validation is performed against both the external Hyper extract and the extract 
 
 - Packaged workbook is a valid ZIP with exactly one `.twb` and one `.hyper`.
 - Tableau workbook XML parses successfully.
-- Required worksheets, dashboard, calculations, actions, and phone layout exist.
-- All analytical worksheets apply the `Complete Month = True` filter.
+- Required worksheets, the named release dashboard, filter actions, and the authored phone layout exist.
+- Analytical worksheets apply the `Complete Month = True` filter; KPI calculations explicitly limit comparisons to January-November.
 - Packaged and external Hyper extracts have identical SHA-256 hashes.
 - Schema includes all 14 expected fields with compatible data types.
 - `direction_code` contains only `A` and `D`.
@@ -36,4 +36,6 @@ python -m unittest discover -s tests -v
 
 ## Visual QA
 
-The desktop layout is fixed at 1200 x 900. The phone layout is explicitly authored rather than auto-generated. Screenshots in `screenshots/` are release evidence for both layouts.
+The desktop layout is fixed at 1280 x 760. The phone layout is explicitly authored as a 375 x 2600 vertical experience rather than auto-generated. The PNG files in `screenshots/` were captured from the live Tableau Public release and are checked for expected dimensions and non-trivial file size in CI.
+
+Published dashboard: [New Zealand Border Movement Recovery Monitor](https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/NewZealandBorderMovementRecoveryMonitor)

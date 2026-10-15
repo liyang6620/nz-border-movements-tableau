@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/release/liyang6620/nz-border-movements-tableau)](https://github.com/liyang6620/nz-border-movements-tableau/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An interactive Tableau BI project for monitoring New Zealand traveller movements across the pre-COVID, restriction, and recovery periods. It combines a decision-focused dashboard with explicit metric definitions, a reproducible workbook transformation, and automated validation of the packaged Hyper extract.
+An interactive Tableau BI project for monitoring New Zealand traveller movements across the pre-COVID, restriction, and recovery periods. It combines a decision-focused dashboard, filter-aware KPI cards, explicit metric definitions, and automated validation of the packaged Hyper extract.
 
 **[Open the live Tableau Public dashboard](https://public.tableau.com/app/profile/yang.li7346/viz/nz-border-movements/NewZealandBorderMovementRecoveryMonitor)** | [View the latest release](https://github.com/liyang6620/nz-border-movements-tableau/releases/latest) | [Review validation evidence](docs/VALIDATION.md)
 
@@ -18,17 +18,17 @@ An interactive Tableau BI project for monitoring New Zealand traveller movements
 | Delivery | Interactive Tableau dashboard with authored desktop and phone layouts |
 | Data scale | 2,222,255 aggregated rows and 60,866,193 traveller movements |
 | Coverage | 1 Jan 2019 to 8 Dec 2025; analytical views use complete months through Nov 2025 |
-| Core analysis | Arrivals, departures, year-on-year change, arrival volume relative to 2019, net traveller movements, age, citizenship, port country, and travel mode |
+| Core analysis | Arrivals, departures, year-on-year change, selected movement volume relative to 2019, net traveller movements, age, citizenship, port country, and travel mode |
 | Quality controls | Hyper integrity tests, workbook structure checks, semantic safeguards, screenshot checks, and GitHub Actions CI |
-| Reproducibility | Deterministic Python transformation for reviewed workbook definitions and layout changes |
+| Reproducibility | Versioned packaged workbook, source extract, validation tests, and a documented transformation utility |
 
 ## What This Project Demonstrates
 
-- **Dashboard design:** a compact KPI hierarchy, focused comparisons, and supporting views without redundant charts.
+- **Dashboard design:** four filter-aware KPI cards, focused comparisons, and supporting views without redundant charts.
 - **Analytical correctness:** comparable January-November periods and automatic exclusion of partial December 2025 data.
 - **Metric governance:** precise use of `Net Traveller Movements` and `Last Overseas Port Country`, with unsupported migration, tourism, and labour-market claims removed.
-- **Responsive delivery:** a 1200 x 900 desktop dashboard and a separately authored phone layout rather than a scaled-down desktop canvas.
-- **Engineering discipline:** versioned workbook assets, reproducible transformations, data and workbook tests, documented assumptions, and CI.
+- **Responsive delivery:** a fixed 1280 x 760 desktop dashboard and a separately authored phone layout rather than a scaled-down desktop canvas.
+- **Engineering discipline:** versioned workbook assets, data and workbook tests, documented assumptions, release evidence, and CI.
 
 ## Decision Context
 
@@ -44,23 +44,26 @@ It does **not** infer traveller purpose, residence, tourism demand, labour suppl
 
 ## Headline Results
 
-All comparisons use January-November to keep periods comparable. The extract is current through 8 December 2025, but December is excluded because it is incomplete.
+All comparisons use January-November to keep periods comparable. The extract is current through 8 December 2025, but December is excluded because it is incomplete. The published dashboard opens with `Direction = (All)`, so the headline cards initially describe arrivals and departures combined.
 
 | Metric | Result | Definition |
 | --- | ---: | --- |
-| 2025 arrivals | 6.02M | Arrival movements, Jan-Nov 2025 |
-| Year-on-year change | +4.3% | 2025 Jan-Nov vs 2024 Jan-Nov arrivals |
-| 2025 arrivals relative to 2019 | 94.2% | 2025 Jan-Nov arrivals equal 94.2% of 2019 Jan-Nov arrivals |
-| Net traveller movements | -1.5K | Arrivals minus departures, Jan-Nov 2025 |
-| Air share | 99.2% | Air arrivals / all arrivals, Jan-Nov 2025 |
+| Selected movements | 12.034M | All border movements, Jan-Nov 2025 |
+| Year-on-year change | +4.6% | Jan-Nov 2025 vs Jan-Nov 2024 selected movements |
+| Recovery vs 2019 | 94.4% | Jan-Nov 2025 selected movements as a share of Jan-Nov 2019 |
+| Air share | 99.2% | Air movements / selected movements, Jan-Nov 2025 |
+
+Selecting `Arrivals` in the left-side direction filter updates the cards to **6.016M**, **+4.3%**, **94.2%**, and **99.23%** respectively. In that state, the 94.2% card means that January-November 2025 arrivals reached 94.2% of the same period in 2019. Selecting marks in the citizenship and last-overseas-port views also updates the relevant KPI context.
+
+The supporting net traveller movement view reports **-1,482** for January-November 2025 (arrivals minus departures). It is deliberately not labelled as net migration.
 
 The largest 2024 arrival age band is 40-69 (2.90M), not 18-39 (2.21M). This is a descriptive traveller-movement result, not a labour-market conclusion.
 
 ## Dashboard Experience
 
-The desktop layout follows an insight-first hierarchy: five fixed-width KPI blocks, the primary monthly movement trend in the upper-left, net movement alongside it, then demographic and geographic context. The citizenship series are explicitly labelled as NZ citizens and Non-NZ citizens instead of relying on colour alone. Air share appears once in the KPI strip instead of being repeated in a low-information chart.
+The desktop layout follows an insight-first hierarchy: a left-side direction filter, four KPI cards, a geographic view, and supporting movement, age, net movement, and citizenship trends. The KPI cards respond to the selected direction and chart context. Citizenship series are explicitly labelled as NZ citizens and Non-NZ citizens instead of relying on colour alone. Air share appears once in the KPI area instead of being repeated in a low-information chart.
 
-The phone layout preserves the same analytical sequence with readable charts and touch-friendly spacing.
+The authored phone layout prioritises the trend charts and supporting breakdowns in a readable vertical sequence. It intentionally omits the dense desktop KPI/header area rather than shrinking it into an unreadable mobile strip.
 
 <img src="screenshots/dashboard-mobile.png" alt="Phone layout of the border movement dashboard" width="375">
 
@@ -87,7 +90,7 @@ Data integrity tests          Workbook structure tests
                  GitHub Actions CI
 ```
 
-The packaged workbook contains its own Hyper extract, so it does not depend on the original local spreadsheet path. Tests also verify that the packaged and external Hyper extracts have identical SHA-256 hashes.
+The packaged workbook contains its own Hyper extract, so the published views do not depend on the original local spreadsheet path. Tests also verify that the packaged and external Hyper extracts have identical SHA-256 hashes. The checked-in TWBX is the canonical final artifact because its last spacing and alignment refinements were completed in Tableau Public/Desktop.
 
 Detailed references:
 
@@ -109,13 +112,7 @@ python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 ```
 
-Open `workbook/nz-border-movements.twbx` to inspect or publish the dashboard.
-
-To reapply the reviewed workbook definitions and layout changes deterministically:
-
-```bash
-python scripts/transform_workbook.py
-```
+Open `workbook/nz-border-movements.twbx` to inspect or republish the dashboard. `scripts/transform_workbook.py` records the XML-level refactor used to establish the reviewed analytical baseline; final visual changes must still be checked in Tableau before release.
 
 ## Repository Structure
 
@@ -124,7 +121,7 @@ python scripts/transform_workbook.py
 |-- data/                 # Hyper extract used by automated data checks
 |-- docs/                 # Definitions, assumptions, and validation evidence
 |-- screenshots/          # Desktop and phone release evidence
-|-- scripts/              # Deterministic TWBX transformation tooling
+|-- scripts/              # Workbook transformation and maintenance tooling
 |-- tests/                # Workbook and Hyper integrity tests
 `-- workbook/             # Packaged Tableau workbook
 ```
